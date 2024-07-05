@@ -1,3 +1,9 @@
+let furby
+
+function preload(){
+  furby = loadImage('furby.png')
+}
+
 function setup() {
   createCanvas(800, 600);
   rectMode(CENTER)
@@ -9,6 +15,7 @@ function draw() {
     background(3, 215, 252)
     
   }
+
 
   background(3, 215, 252);
 
@@ -113,4 +120,9 @@ function draw() {
   line(273,300,328,300)
   line(473,300,528,300)
 
+  image(furby, 0, 270)
+
+  function windowResized(){
+  resizeCanvas(windowWidth, windowHeight)
+}
 }
