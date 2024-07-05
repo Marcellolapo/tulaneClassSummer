@@ -4,8 +4,39 @@ function setup() {
 }
 
 function draw() {
-  background(3, 215, 252);
   
+    if(key === 'd'){
+    background(3, 215, 252)
+    
+  }
+
+  background(3, 215, 252);
+
+ stroke(255, 238, 5)
+  fill(255, 238, 5)
+  circle(775,25,50)
+  
+  strokeWeight(10)
+  line(700,200,750,100)
+  line(650,150,720,75)
+  line(620,100,710,40)
+
+  strokeWeight(10)
+  fill(5, 206, 232)
+  stroke(5, 206, 232)
+  rect(300,300,50,50)
+  
+  rect(500,300,50,50)
+  
+  
+ if(key === 'n'){
+
+  background(47, 91, 173)
+  fill(255)
+  stroke(255)
+  circle(775,25,60)
+}
+
   fill(3, 252, 61)
   strokeWeight(1)
   stroke(0)
@@ -44,21 +75,28 @@ function draw() {
   fill(225)
   ellipse(100,90,100,10)
   
-  stroke(255, 238, 5)
-  fill(255, 238, 5)
-  circle(775,25,50)
+
   
   strokeWeight(10)
-  line(700,200,750,100)
-  line(650,150,720,75)
-  line(620,100,710,40)
-  
   fill(5, 206, 232)
   stroke(5, 206, 232)
   rect(300,300,50,50)
   
   rect(500,300,50,50)
   
+  strokeWeight(10)
+  rect(300,300,50,50)
+  rect(500,300,50,50)
+
+  if(key === 'n'){
+  strokeWeight(10)
+  fill(0)
+  stroke(0)
+  rect(300,300,50,50)
+}
+  
+  rect(500,300,50,50)
+
   fill(97, 68, 36)
   stroke(97, 68, 36)
   rect(400,444,50,100)
@@ -67,9 +105,12 @@ function draw() {
   stroke(225)
   point(420,450)
   
+  fill(255)
+  stroke(255)
   strokeWeight(6)
   line(300,273,300,328)
   line(500,273,500,328)
   line(273,300,328,300)
   line(473,300,528,300)
+
 }
