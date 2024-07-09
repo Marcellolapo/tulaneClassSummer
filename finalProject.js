@@ -6,17 +6,29 @@ let playButton
 
 let modellistaFont
 
-let upsideDownCup 
+let upsideDownCup
 
-let xSpeed = 5
-let ySpeed = 4
+let upsideDownCup2
 
+let upsideDownCup3
+
+let timer = 10
+
+let xSpeed = 40
+let ySpeed = 40
+let zSpeed = 40
+let aSpeed = 40
+let bSpeed = 40
+let cSpeed = 40
 function preload(){
 
 	backgroundMusic = loadSound('scott-buckley-moonlight(chosic.com).mp3')
 	modellistaFont = loadFont('modellista.ttf')
 
 	upsideDownCup = loadImage('upside-down-cup.png')
+	upsideDownCup2 = loadImage('upside-down-cup.png')
+	upsideDownCup3 = loadImage('upside-down-cup.png')
+
 }
 
 function setup(){
@@ -30,17 +42,17 @@ function setup(){
 
 
 	playButton = createButton('Play Music')
-	playButton.position(windowWidth-180, 15)
+	playButton.position( 70, 150)
 	playButton.mousePressed(playBackgroundMusic)
 
 	furbyX = windowWidth/2
 	furbyY = windowHeight/2
 
-	furbyZ = windowWidth/2-50
-	furbyA = windowHeight/2-50
+	furbyZ = windowWidth/2-200
+	furbyA = windowHeight/2-200
 
-	furbyB = windowWidth/2+50
-	furbyC = windowHeight/2+50
+	furbyB = windowWidth/2+200
+	furbyC = windowHeight/2+200
 
 }
 
@@ -65,16 +77,16 @@ strokeWeight(4)
 
 image(upsideDownCup, furbyX, furbyY, 50,50)
 
-image(upsideDownCup, furbyZ, furbyA, 50,50)
+image(upsideDownCup2, furbyZ, furbyA, 50,50)
 
-image(upsideDownCup, furbyB, furbyC, 50,50)
+image(upsideDownCup3, furbyB, furbyC, 50,50)
 
 furbyX = furbyX + xSpeed
 furbyY = furbyY + ySpeed
-furbyZ = furbyZ + xSpeed
-furbyA = furbyA + ySpeed
-furbyB = furbyB + xSpeed
-furbyC = furbyC + ySpeed
+furbyZ = furbyZ + zSpeed
+furbyA = furbyA + aSpeed
+furbyB = furbyB + bSpeed
+furbyC = furbyC + cSpeed
 
 if(furbyX >= windowWidth -25 || furbyX <= 25){
 		xSpeed = xSpeed * -1
@@ -88,26 +100,40 @@ if(furbyX >= windowWidth -25 || furbyX <= 25){
 
 
 if(furbyZ >= windowWidth -25 || furbyZ <= 25){
-		xSpeed = xSpeed * -1
+		zSpeed = zSpeed * -1
 	}
 
 	if(furbyA >= windowHeight -25 || furbyA <= 25){
-		ySpeed = ySpeed * -1
+		aSpeed = aSpeed * -1
 	}
 
 
 
 
 if(furbyB >= windowWidth -25 || furbyB <= 25){
-		xSpeed = xSpeed * -1
+		bSpeed = bSpeed * -1
 	}
 
 	if(furbyC >= windowHeight -25 || furbyC <= 25){
-		ySpeed = ySpeed * -1
+		cSpeed = cSpeed * -1
 	}
 
 
+textSize(100);
+  text(timer, windowWidth/2, windowHeight/2);
 
+  if (frameCount % 60 == 0 && timer > 0){
+  	timer --;
+  }
+  if (timer == 0) {
+    text("Hover over the correct cup", width/2, height*0.7);
+    xSpeed = 0
+	ySpeed = 0
+	zSpeed = 0
+	aSpeed = 0
+	bSpeed = 0
+	cSpeed = 0
+  }
 
 
 
