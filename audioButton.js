@@ -67,7 +67,6 @@ textFont(airstrikeFont)
 textSize(40)
 fill(255)
 textAlign(CENTER)
-
 text('Dancing Baby Site!!', windowWidth/2,50)
 
 image(baby, 200, 300, 350, 200)

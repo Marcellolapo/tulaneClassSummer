@@ -22,6 +22,19 @@ let zSpeed = 40
 let aSpeed = 40
 let bSpeed = 40
 let cSpeed = 40
+
+let startBool = true
+let gameBool = false
+let winBool = false
+let loseBool = false
+
+let furby
+
+let mouseDist
+
+let mouseDistWrong1
+let mouseDistWrong2
+
 function preload(){
 
 	backgroundMusic = loadSound('scott-buckley-moonlight(chosic.com).mp3')
@@ -30,6 +43,7 @@ function preload(){
 	upsideDownCup = loadImage('upside-down-cup.png')
 	upsideDownCup2 = loadImage('upside-down-cup.png')
 	upsideDownCup3 = loadImage('upside-down-cup.png')
+	furby = loadImage('furby.png')
 
 }
 
@@ -49,17 +63,18 @@ function setup(){
 
 	startButton = createButton('Start Game')
 	startButton.position(70, 300)
-	startButton.mousePressed(timer)
+	startButton.mousePressed(startGame)
 
+	
 
-	furbyX = windowWidth/2
-	furbyY = windowHeight/2
+	furbyX = random(26,windowWidth -26)
+	furbyY = random(26,windowHeight -26)
 
-	furbyZ = windowWidth/2-200
-	furbyA = windowHeight/2-200
+	furbyZ = random(26,windowWidth -26)
+	furbyA = random(26,windowHeight -26)
 
-	furbyB = windowWidth/2+200
-	furbyC = windowHeight/2+200
+	furbyB = random(26,windowWidth -26)
+	furbyC = random(26,windowHeight -26)
 
 }
 
@@ -73,11 +88,31 @@ function playBackgroundMusic(){
 	}
 }
 
+function startScreen(){
+
+background(13, 29, 61)
+
+fill(0)
+
+textFont(modellistaFont)
+textSize(80)
+fill(255)
+textAlign(CENTER)
+text('Shuffle', 150, 100,)
+
+image(furby, furbyX, furbyY, 50,50)
+
+image(upsideDownCup2, furbyZ, furbyA, 50,50)
+
+image(upsideDownCup3, furbyB, furbyC, 50,50)
 
 
-
-function draw(){
-
+}
+function startGame(){
+startBool = false
+gameBool = true
+startButton.hide()
+playButton.hide()
 background(13, 29, 61)
 
 strokeWeight(4)
@@ -153,17 +188,78 @@ fill(255)
 textAlign(CENTER)
 text('Shuffle', 150, 100,)
 
+mouseDist = dist(mouseX, mouseY, furbyX, furbyY)
+mouseDistWrong1 = dist(mouseX, mouseY, furbyZ, furbyA)
+mouseDistWrong2 = dist(mouseX, mouseY, furbyB, furbyC)
+
+if(timer == 0 && mouseDist < 25){
+	winScreen()
+}
+
+if(timer == 0 && mouseDistWrong1 <25){
+	loseScreen()
+}
+
+if(timer == 0 && mouseDistWrong2 <25){
+	loseScreen()
+}
 
 
+}
+
+function winScreen(){
+
+startBool = false
+gameBool = false
+winBool = true
+
+background(0)
+textFont(modellistaFont)
+textSize(80)
+fill(255)
+text('You Win', windowWidth/2, windowHeight/2)
+}
 
 
+function loseScreen(){
+
+	startBool = false
+	gameBool = false
+	winBool = false
+	loseBool = true
+
+	background(100)
+
+textFont(modellistaFont)
+textSize(80)
+fill(255)
+text('You Win', windowWidth/2, windowHeight/2)
 
 }
 
 
 
+function draw(){
+
+if(gameBool == true){
+	startGame()
+}
 
 
+if(startBool == true){
+	gameBool = false
+	startScreen()
+}
+
+if(winBool == true){
+	winScreen()
+
+if(loseBool == true){
+	loseScreen()
+}
+}
+
+}
 
 
 

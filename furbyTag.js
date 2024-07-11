@@ -48,6 +48,8 @@ function startGame(){
 
 	image(furby, furbyX, furbyY, 50,50)
 
+	
+
 	mouseDist = dist(mouseX, mouseY, furbyX, furbyY)
 
 
