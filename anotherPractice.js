@@ -4,6 +4,9 @@ let canvas
 
 let playButton
 
+let difficultyButton
+let easyButton
+let hardButton
 let startButton
 
 let modellistaFont
@@ -16,15 +19,16 @@ let upsideDownCup3
 
 let timer = 10
 
-let xSpeed = 40
-let ySpeed = 40
-let zSpeed = 40
-let aSpeed = 40
-let bSpeed = 40
-let cSpeed = 40
+let xSpeed = 10
+let ySpeed = 10
+let zSpeed = 10
+let aSpeed = 10
+let bSpeed = 10
+let cSpeed = 10
 
-let startBool = true
-let gameBool = false
+let chooseDifficultyBool = true
+let startBool = false
+let easyBool = false
 let winBool = false
 let loseBool = false
 
@@ -61,11 +65,21 @@ function setup(){
 	playButton.position( 70, 150)
 	playButton.mousePressed(playBackgroundMusic)
 
+	difficultyButton = createButton('Choose Difficulty')
+	difficultyButton.position(70, 300)
+	difficultyButton.mousePressed(startScreen1)
+
+	easyButton = createButton('Easy Mode')
+	easyButton.position(windowWidth/2-200, windowHeight/2)
+	easyButton.mousePressed(startScreen1)
+
+	hardButton = createButton('Hard mode')
+	hardButton.position(windowWidth/2+100, windowHeight/2)
+	hardButton.mousePressed(hardMode)
+
 	startButton = createButton('Start Game')
 	startButton.position(70, 300)
-	startButton.mousePressed(startGame)
-
-	
+	startButton.mousePressed(easyMode)
 
 	furbyX = random(240,windowWidth -26)
 	furbyY = random(170,windowHeight -26)
@@ -89,8 +103,32 @@ function playBackgroundMusic(){
 }
 
 
+function chooseDifficulty(){
 
-function startScreen(){
+background(13, 29, 61)
+
+startButton.hide()
+difficultyButton.hide()
+
+	fill(0)
+textFont(modellistaFont)
+textSize(80)
+fill(255)
+textAlign(CENTER)
+text('Shuffle', 150, 100,)
+text('Choose Difficulty', windowWidth/2, 100)
+
+}
+
+
+function startScreen1(){
+
+chooseDifficultyBool = false
+startBool = true
+
+easyButton.hide()
+hardButton.hide()
+startButton.show()
 
 background(13, 29, 61)
 
@@ -109,9 +147,15 @@ text('Shuffle', 150, 100,)
 text('Keep an eye on the Furby!', windowWidth/2, 100)
 
 }
-function startGame(){
+
+
+function hardMode(){
+	background(0)
+}
+
+function easyMode(){
 startBool = false
-gameBool = true
+easyBool = true
 startButton.hide()
 playButton.hide()
 background(13, 29, 61)
@@ -211,7 +255,7 @@ if(timer == 0 && mouseDistWrong2 <25){
 function winScreen(){
 
 startBool = false
-gameBool = false
+easyBool = false
 winBool = true
 
 background(0)
@@ -225,7 +269,7 @@ text('You Win', windowWidth/2, windowHeight/2)
 function loseScreen(){
 
 	startBool = false
-	gameBool = false
+	easyBool = false
 	winBool = false
 	loseBool = true
 
@@ -242,16 +286,18 @@ text('You Lose', windowWidth/2, windowHeight/2)
 
 function draw(){
 
+if(chooseDifficultyBool == true){
+	chooseDifficulty()
+}
 
-
-if(gameBool == true){
-	startGame()
+if(easyBool == true){
+	easyMode()
 }
 
 
 if(startBool == true){
-	gameBool = false
-	startScreen()
+	easyBool = false
+	startScreen1()
 }
 
 if(winBool == true){
